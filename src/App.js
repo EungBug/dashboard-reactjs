@@ -1,11 +1,23 @@
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import AdminDashboard from '@/pages/admin-dashboard/adminDashboard';
+import { useEffect } from 'react';
 
 function App() {
-  return (
-    <div>
-    <div className="">
+  const navigate = useNavigate();
 
-      </div>
-      </div>
+  useEffect(() => {
+    navigate('/admin-dashboard/main');
+  });
+
+  return (
+    <div className="h-screen w-full">
+      <Routes>
+        <Route
+          path="/admin-dashboard/:category"
+          element={<AdminDashboard />}
+        />
+      </Routes>
+    </div>
   );
 }
 
