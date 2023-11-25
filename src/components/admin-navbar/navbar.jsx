@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Context } from '@/context';
 import dinein from '@/datas/imgs/dinein.png';
 import walkin from '@/datas/imgs/walkin.png';
 import logo from '@/datas/imgs/logo.png';
 
 const Navbar = () => {
+  const { state, dispatch } = useContext(Context);
+  const toggle = () => {
+    dispatch({ type: 'SET_TOGGLE_NAVBAR', payload: !state.toggleNavbar });
+  };
+
   return (
     <div className="z-50 fixed left-0 right-0 top-0 h-[76px] px-6 py-4 bg-white border-b border-neutral-200 justify-between items-center gap-5 inline-flex">
       <div className="flex gap-6 itmes-center">
@@ -14,7 +19,11 @@ const Navbar = () => {
             alt="logo"
           />
         </div>
-        <div className="text-xl font-semibold leading-8 text-[#19191c]">Dashboard</div>
+        <div
+          className="text-xl font-semibold leading-8 text-[#19191c]"
+          onClick={toggle}>
+          Dashboard
+        </div>
       </div>
       <div className="flex gap-8 items-center">
         <div className="hidden rounded-[50px] border border-neutral-200 items-center md:flex">
