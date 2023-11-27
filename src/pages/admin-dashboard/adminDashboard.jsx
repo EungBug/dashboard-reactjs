@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '@/components/admin-navbar/navbar';
 import Sidebar from '@/components/admin-sidebar/sidebar';
@@ -10,6 +10,18 @@ import { Data } from '@/datas/jummy';
 const AdminDashboard = () => {
   const { category } = useParams();
   const cat = Data.find(category => category.url === parseInt(category));
+  const { state, dispatch } = useContext(Context);
+  const [size, setSize] = useState(1000);
+
+  window.addEventListener('resize', e => {
+    setSize(e.currentTarget.innerWidth);
+  });
+
+  useEffect(() => {
+    size < 768
+      ? dispatch({ type: 'SET_TOGGLE_NAVBAR', payload: false })
+      : dispatch({ type: 'SET_TOGGLE_NAVBAR', payload: true });
+  }, [size]);
 
   return (
     <div className="bg-slate-50">
