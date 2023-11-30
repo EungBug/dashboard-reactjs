@@ -30,7 +30,12 @@ const AdminDashboard = () => {
       </div>
       <div className="main max-w-[2300px] mt-[76px] flex flex-1 justify-between">
         <Sidebar />
-        <div className={'main overflow-auto w-full h-full z-10'}>
+        <div
+          className={`main overflow-auto w-full h-full z-10 ${
+            state.toggle
+              ? `${state.toggleNavbar ? 'md:ml-[310px]' : 'ml-0'}`
+              : `${state.toggleNavbar ? 'md:ml-[90px]' : 'ml-0'}`
+          }`}>
           {category === 'main' && <Main />}
           {category === 'marketing' && <Marketing />}
         </div>
